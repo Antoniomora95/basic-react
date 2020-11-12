@@ -89,7 +89,7 @@ function App() {
           key2: 'Second value'
         }
       }
-      callbackFn = {item => item * 20}
+      callbackFn = {item => item * 30}
       htmlEl = { <h3>this is a html element via props</h3> }
       ></Tick>
     </div>
