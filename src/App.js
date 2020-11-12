@@ -87,20 +87,30 @@ class Counter extends Component {
     this.state = {
       counter: 0
     } 
+    this.increment = this.increment.bind(this);
+    this.decrement = this.decrement.bind(this);
+  }
+  increment(){
+    this.setState((state)=>{
+      return {...state, counter: state.counter +1}
+    })
+  }
+  decrement(){
+    if(this.state.counter > 0){
+      this.setState((state)=>{
+        return {...state, counter: state.counter - 1}
+      });
+    }
   }
   componentDidMount(){
-    setInterval(() => {
-      this.setState((state)=>{
-        return {...state, counter: state.counter +1}
-      })
-    }, 1000);
+    
   }
     render(){
       let { counter } = this.state;
       return (
         <div className="counter-wrap">
-          <button>Increment</button>
-          <button>Decrement</button>
+          <button onClick= {this.increment}>Increment</button>
+          <button onClick={this.decrement}>Decrement</button>
           <PrintCounter counter = { counter }></PrintCounter>
         </div>
       );
