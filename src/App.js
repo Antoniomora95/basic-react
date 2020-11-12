@@ -73,27 +73,54 @@ class Tick extends Component{
 
 }
 
-
-class Title extends Component {
-  // default props
-  render(){
-    return(
-      <h3>{ this.props.title }</h3>
-    );
-  }
-}
-Title.defaultProps = {
-  title: 'this is the default title'
-}
-function App() {
-  let name = 'Antonio Mora';
-  let text = 'I am learning the basics in react';
-  let number = 9;
-  return (
-    <div className="App">
-      <Title />
+function PrintCounter({counter}){
+  console.log(counter);
+  return(
+    <div>
+      actual value: { counter }
     </div>
   );
+}
+class Counter extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      counter: 0
+    } 
+  }
+  componentDidMount(){
+    setInterval(() => {
+      this.setState((state)=>{
+        return {...state, counter: state.counter +1}
+      })
+    }, 1000);
+  }
+    render(){
+      let { counter } = this.state;
+      return (
+        <div className="counter-wrap">
+          <button>Increment</button>
+          <button>Decrement</button>
+          <PrintCounter counter = { counter }></PrintCounter>
+        </div>
+      );
+    }
+   
+}
+class App extends Component {
+
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <Counter></Counter>
+        <p>first component with state</p>
+      </div> 
+      );
+  }
 }
 
 export default App;
