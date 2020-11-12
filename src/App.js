@@ -73,25 +73,25 @@ class Tick extends Component{
 
 }
 
+
+class Title extends Component {
+  // default props
+  render(){
+    return(
+      <h3>{ this.props.title }</h3>
+    );
+  }
+}
+Title.defaultProps = {
+  title: 'this is the default title'
+}
 function App() {
   let name = 'Antonio Mora';
   let text = 'I am learning the basics in react';
   let number = 9;
   return (
-    <div>
-      <Helloheader name={name}></Helloheader>
-      <Text text={text} number= {number}></Text>
-      <Tick
-      arrayNumbers = {[2, 4, 5, 6, 8]}
-      objectWithInfo = {
-        {
-          key1: 'First value',
-          key2: 'Second value'
-        }
-      }
-      callbackFn = {item => item * 30}
-      htmlEl = { <h3>this is a html element via props</h3> }
-      ></Tick>
+    <div className="App">
+      <Title />
     </div>
   );
 }
