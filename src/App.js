@@ -74,21 +74,23 @@ class Tick extends Component{
 }
 
 function PrintCounter({counter}){
-  console.log(counter);
+  console.log(counter, 'change');
   return(
     <div>
       actual value: { counter }
     </div>
   );
 }
+// initialize this.state with props
 class Counter extends Component {
   constructor(props){
     super(props);
     this.state = {
-      counter: 0
+      counter: this.props.initialCounter 
     } 
     this.increment = this.increment.bind(this);
     this.decrement = this.decrement.bind(this);
+    console.log(this);
   }
   increment(){
     this.setState((state)=>{
@@ -102,9 +104,6 @@ class Counter extends Component {
       });
     }
   }
-  componentDidMount(){
-    
-  }
     render(){
       let { counter } = this.state;
       return (
@@ -115,7 +114,9 @@ class Counter extends Component {
         </div>
       );
     }
-   
+}
+Counter.defaultProps = {
+  initialCounter: 25
 }
 class App extends Component {
 
@@ -126,7 +127,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <Counter></Counter>
+        <Counter initialCounter={40}></Counter>
         <p>first component with state</p>
       </div> 
       );
