@@ -1,5 +1,7 @@
 import { Component } from 'react';
+import PrintValues from './printValues';
 import './App.css';
+
 
 function Head(props) {
   return (
@@ -120,14 +122,10 @@ Counter.defaultProps = {
 }
 class App extends Component {
 
-  constructor(props){
-    super(props);
-  }
-
   render(){
     return (
       <div className="App">
-        <Counter initialCounter={40}></Counter>
+        <PrintValues></PrintValues>
         <p>first component with state</p>
       </div> 
       );
