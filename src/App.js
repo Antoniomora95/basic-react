@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PrintValues from './printValues';
+import ConditionalSection from './sections/conditionalRender'
 import { useState } from "react";
 import './App.css';
 
@@ -137,6 +138,8 @@ class Counter extends Component {
         <button onClick={this.decrement}>Decrement</button>
         <PrintCounter counter={counter}></PrintCounter>
         <ParamInHandlerFn letters={letters} ></ParamInHandlerFn>
+        <p>************---------------------------**************</p>
+        <ConditionalSection isAuthenticated = { true }/>
       </div>
     );
   }
