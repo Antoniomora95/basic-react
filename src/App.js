@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import PrintValues from './printValues';
-import ConditionalSection from './sections/conditionalRender'
+import ObjectList from './sections/objectsList';
 import { useState } from "react";
 import './App.css';
 
@@ -130,16 +129,10 @@ class Counter extends Component {
     }
   }
   render() {
-    let { counter } = this.state;
-    let letters = Array.from({ length: 9 }, (v, i) => String.fromCharCode(65 + i))
+    
     return (
       <div className="counter-wrap">
-        <button onClick={() => this.increment()}>Increment</button>
-        <button onClick={this.decrement}>Decrement</button>
-        <PrintCounter counter={counter}></PrintCounter>
-        <ParamInHandlerFn letters={letters} ></ParamInHandlerFn>
-        <p>************---------------------------**************</p>
-        <ConditionalSection isAuthenticated = { true }/>
+        pas
       </div>
     );
   }
@@ -152,8 +145,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Counter></Counter>
-        <p>first component with state</p>
+        <ObjectList/>
       </div>
     );
   }
@@ -163,61 +155,15 @@ export default App;
 
 
 /*
-
-var person = {
-  name: "Brendan Eich",
-  hello: function(thing) {
-    console.log(this.name + " says hello " + thing);
-  }
-}
-
-
-
-person.hello('world direct call')
-
-let storedFn = person.hello
-
-storedFn('world indirect call')
-VM3039:4 Brendan Eich says hello world direct call
-VM3039:4  [nothing]  says hello world indirect call
-*/
-
-
-
 /*
-function Sidebar() {
-  return (
-    <aside>
-      <section>
-        <h3>Menu</h3>
-        <ul>
-          <li>Home</li>
-          <li>About us</li>
-          <li>Dashboard</li>
-          <li>Contact</li>
-        </ul>
-      </section>
-    </aside>
-  );
-}
-function Main() {
-  return (
-    <main>
-      <article>
-        <h3>This is the main</h3>
-        <p>
-          this is the paragraph, jeje
-      </p>
-      </article>
-    </main>
-  );
-}
+    <button onClick={() => this.increment()}>Increment</button>
+        <button onClick={this.decrement}>Decrement</button>
+        <PrintCounter counter={counter}></PrintCounter>
+        <ParamInHandlerFn letters={letters} ></ParamInHandlerFn>
+        <p>************---------------------------**************</p>
+        <ConditionalSection isAuthenticated = { true }/>
+          let { counter } = this.state;
+    let letters = Array.from({ length: 9 }, (v, i) => String.fromCharCode(65 + i))
+         */
 
-function Bottom() {
-  return (
-    <footer>
-      Antonio Mora 2020 &copy;
-    </footer>
-  );
-}
-*/
+
