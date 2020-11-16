@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import ObjectList from './sections/objectsList';
+import OnClickHandler from './sections/onClick';
 import { useState } from "react";
 import './App.css';
 
@@ -76,14 +76,6 @@ class Tick extends Component {
 
 }
 
-function PrintCounter({ counter }) {
-  console.log(counter, 'change');
-  return (
-    <div>
-      actual value: { counter}
-    </div>
-  );
-}
 function ParamInHandlerFn({ letters }) {
   const [ state, setState ] = useState({ justClicked:'none for now' });
   const { justClicked } = state;
@@ -102,8 +94,6 @@ function ParamInHandlerFn({ letters }) {
       </ul>
     </div>);
 }
-
-
 // initialize this.state with props
 class Counter extends Component {
   constructor(props) {
@@ -132,7 +122,7 @@ class Counter extends Component {
     
     return (
       <div className="counter-wrap">
-        pas
+        {this.state.counter}
       </div>
     );
   }
@@ -145,7 +135,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ObjectList/>
+        <OnClickHandler/>
       </div>
     );
   }
