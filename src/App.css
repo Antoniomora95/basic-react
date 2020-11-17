@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  margin: 30px;
+  width: 70%;
 }
 
 
@@ -15,4 +16,11 @@
 }
 .sending {
   background-color: aquamarine;
+}
+
+.articleChildren {
+  margin-top: 20px;
+  border-radius:4px;
+  padding: 20px;
+  box-shadow: 2px 2px 6px 2px grey;
 }

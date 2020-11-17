@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Forms from './sections/Forms';
+import ArticleChildren from './sections/ChildrenLayout';
 import { useState } from "react";
 import './App.css';
 
@@ -77,20 +77,20 @@ class Tick extends Component {
 }
 
 function ParamInHandlerFn({ letters }) {
-  const [ state, setState ] = useState({ justClicked:'none for now' });
+  const [state, setState] = useState({ justClicked: 'none for now' });
   const { justClicked } = state;
   let lettersArray = [...letters];
   let lettersList = lettersArray.map(letter => {
-  return <li key={ letter } onClick = {() => setState( {...state, justClicked: letter} )}> { letter }... </li>
+    return <li key={letter} onClick={() => setState({ ...state, justClicked: letter })}> {letter}... </li>
   });
   return (
     <div>
       <h4>How do I pass a parameter to an event handler or callback, how to use set state in function components actually</h4>
       <div>
-        just clicked: { justClicked }
+        just clicked: {justClicked}
       </div>
       <ul>
-        { lettersList }
+        {lettersList}
       </ul>
     </div>);
 }
@@ -119,7 +119,7 @@ class Counter extends Component {
     }
   }
   render() {
-    
+
     return (
       <div className="counter-wrap">
         {this.state.counter}
@@ -135,7 +135,34 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Forms/>
+        <ArticleChildren
+        title={'This is my first post!'}
+        author={'Antonio Bautista'}
+        >
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Mollitia omnis dolorem fugit ab hic vitae eius unde soluta!
+            Rem maxime aliquid.</p>
+            <strong>this is the end</strong>
+        </ArticleChildren>
+        <ArticleChildren
+        title={'How  do I defeated procrastination!'}
+        author={'John Askew'}
+        date={ new Date().toLocaleString()}>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Mollitia omnis dolorem fugit ab hic vitae eius unde soluta!
+            Rem maxime aliquid.</p>
+            <strong>this is the beginning</strong>
+        </ArticleChildren>
+
+        <ArticleChildren
+        title={'My life as a software engineer!'}
+        author={'Will Atkinson'}
+        date={ new Date().toLocaleString()}>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+            Mollitia omnis dolorem fugit ab hic vitae eius unde soluta!
+            Rem maxime aliquid.</p>
+            <strong>this is the last post</strong>
+        </ArticleChildren>
       </div>
     );
   }
