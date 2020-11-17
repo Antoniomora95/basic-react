@@ -13,3 +13,6 @@
 .CarItem :hover {
   box-shadow: 1px grey;
 }
+.sending {
+  background-color: aquamarine;
+}

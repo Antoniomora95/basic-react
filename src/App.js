@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import OnClickHandler from './sections/onClick';
+import Forms from './sections/Forms';
 import { useState } from "react";
 import './App.css';
 
@@ -135,7 +135,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <OnClickHandler/>
+        <Forms/>
       </div>
     );
   }
