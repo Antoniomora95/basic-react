@@ -161,7 +161,7 @@ class App extends Component {
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
             Mollitia omnis dolorem fugit ab hic vitae eius unde soluta!
             Rem maxime aliquid.</p>
-            <strong>this is the last post</strong>
+            <strong>this is the last post Brenda sls</strong>
         </ArticleChildren>
       </div>
     );
