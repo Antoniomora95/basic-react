@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import ArticleChildren from './sections/ChildrenLayout';
+import LifeCycles from './sections/LifeCycles';
 import { useState } from "react";
 import './App.css';
 
@@ -44,10 +45,11 @@ class Tick extends Component {
     this.setState(state => ({ timeNow: this.date() }));
   }
   date() {
-    return new Date().toUTCString()
+    return new Date().toLocaleString()
   }
   componentDidMount() {
-    let interval = setInterval(() => this.tick(), 1000)
+    let interval = setInterval(() => this.tick(), 1000);
+    console.log(interval, 'interval');
     this.setState(state => ({ interval: interval }));
   }
   componentWillUnmount() {
@@ -57,19 +59,9 @@ class Tick extends Component {
 
   render() {
     let { timeNow } = this.state;
-    let { arrayNumbers, objectWithInfo, callbackFn, htmlEl } = this.props;
-    let mappedNumbers = arrayNumbers.map(callbackFn);
     return (
       <div>
-        <h5>the current time is: {timeNow}</h5>
-        { arrayNumbers.join(',  ')}
-        <br></br>
-        { mappedNumbers.join(', ')}
-        <br></br>
-        {
-          objectWithInfo.key1
-        }
-        {htmlEl}
+        <h2>the current time is: {timeNow}</h2>
       </div>
     );
   }
@@ -131,38 +123,44 @@ Counter.defaultProps = {
   initialCounter: 25
 }
 class App extends Component {
-
+  constructor(){
+    super();
+    this.state = {
+      lifeCycles: true,
+      inputVal: ''
+    }
+    this.toggleLifleCycles = this.toggleLifleCycles.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  toggleLifleCycles(){
+    this.setState(state => {
+      let { lifeCycles } = state;
+      console.log('toggle called');
+      return {...state,lifeCycles: !lifeCycles}
+    });
+  }
+  handleChange({target}){
+    const { value } = target;
+    console.log(value);
+    this.setState(state => {
+      return {...state, inputVal: value}
+    });
+  }
   render() {
+    const { lifeCycles, inputVal } = this.state;
     return (
       <div className="App">
-        <ArticleChildren
-        title={'This is my first post!'}
-        author={'Antonio Bautista'}
-        >
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-            Mollitia omnis dolorem fugit ab hic vitae eius unde soluta!
-            Rem maxime aliquid.</p>
-            <strong>this is the end</strong>
-        </ArticleChildren>
-        <ArticleChildren
-        title={'How  do I defeated procrastination!'}
-        author={'John Askew'}
-        date={ new Date().toLocaleString()}>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-            Mollitia omnis dolorem fugit ab hic vitae eius unde soluta!
-            Rem maxime aliquid.</p>
-            <strong>this is the beginning</strong>
-        </ArticleChildren>
-
-        <ArticleChildren
-        title={'My life as a software engineer!'}
-        author={'Will Atkinson'}
-        date={ new Date().toLocaleString()}>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-            Mollitia omnis dolorem fugit ab hic vitae eius unde soluta!
-            Rem maxime aliquid.</p>
-            <strong>this is the last post Brenda sls</strong>
-        </ArticleChildren>
+        <div>
+         { !lifeCycles && <button onClick={this.toggleLifleCycles}>show component</button> } 
+          { lifeCycles && <button onClick={this.toggleLifleCycles}>hide component</button> }
+          </div>
+        { lifeCycles && <LifeCycles/> }
+        <div>
+          <label htmlFor={'inp'}>val </label>
+          <textarea name='inp' type={'text'} value= { inputVal } onChange={ this.handleChange }/>
+          <br/>
+          <label>{inputVal}</label>
+        </div>
       </div>
     );
   }
