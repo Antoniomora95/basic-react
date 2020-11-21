@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import ArticleChildren from './sections/ChildrenLayout';
-import LifeCycles from './sections/LifeCycles';
+import FetchAPI from './sections/FetchAPI';
 import { useState } from "react";
 import './App.css';
 
@@ -147,20 +146,9 @@ class App extends Component {
     });
   }
   render() {
-    const { lifeCycles, inputVal } = this.state;
     return (
       <div className="App">
-        <div>
-         { !lifeCycles && <button onClick={this.toggleLifleCycles}>show component</button> } 
-          { lifeCycles && <button onClick={this.toggleLifleCycles}>hide component</button> }
-          </div>
-        { lifeCycles && <LifeCycles/> }
-        <div>
-          <label htmlFor={'inp'}>val </label>
-          <textarea name='inp' type={'text'} value= { inputVal } onChange={ this.handleChange }/>
-          <br/>
-          <label>{inputVal}</label>
-        </div>
+        <FetchAPI/>
       </div>
     );
   }
