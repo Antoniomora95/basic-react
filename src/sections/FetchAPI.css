@@ -1,0 +1,14 @@
+.FetchApiContainer {
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    width: 50%;
+    padding: 10px 5px;
+    margin-bottom: 5px;
+}
+.RenderError {
+    background-color: tomato;
+}
+.RenderCurrencies{
+    background-color: darkseagreen;
+}
