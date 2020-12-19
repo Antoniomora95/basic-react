@@ -47,15 +47,19 @@ export default function FetchAPI(props) {
     const [state, setStateComponent] = useState({ bitcoinPriceList: [], hasError: false, errorDescription: 'nothing'});
 
     useEffect(() => {
+        let shouldUpdate = true;
         getBitcoinInfo().then(data => {
-            if (data.hasError) {
+            if (data.hasError && shouldUpdate) {
                 const { hasError, errorDescription } = data;
                 setStateComponent({hasError, errorDescription });
-            } else {
-                const {bitcoinPriceList} = data;
+            } else if( !data.hasError &&  shouldUpdate) {
+                const { bitcoinPriceList } = data;
                 setStateComponent({ bitcoinPriceList })
             }
         });
+        return function clean(){
+            return shouldUpdate = false;
+        }
     }, [])
     const { bitcoinPriceList, hasError, errorDescription } = state;
     return (
