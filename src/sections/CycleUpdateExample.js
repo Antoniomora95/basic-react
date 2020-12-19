@@ -24,7 +24,7 @@ class AnimalImage extends Component {
             console.log(nextProps, 'nextProps -- 2');
             return true;
         } if(this.state.src !== nextState.src){
-            console.log(nextState, 'nextState -- 6');
+            console.log(nextState, 'nextState -- 2');
             // since state is actually changing, render is called again
             // then i implemented componentDidUpdate and this is called again because of the previous update
             // componentDidUpdate won't enter to setstate at least because the prev and current props are the same
@@ -35,6 +35,7 @@ class AnimalImage extends Component {
         }
     }
     componentDidUpdate(prevProps, prevState, snapshot){
+        //console.log('componentAbouttoUpdate -- 4', prevProps.animal !== this.props.animal);
         console.log('componentAbouttoUpdate -- 4', prevProps.animal !== this.props.animal);
         if(prevProps.animal !== this.props.animal){ 
             console.log('is going to -- 5', this.props.animal);
