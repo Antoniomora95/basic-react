@@ -19,10 +19,26 @@ class AnimalImage extends Component {
             stp:'ds'
         }
     }
+    shouldComponentUpdate(nextProps, nextState){
+        if(this.props.animal !== nextProps.animal){
+            console.log(nextProps, 'nextProps -- 2');
+            return true;
+        } if(this.state.src !== nextState.src){
+            console.log(nextState, 'nextState -- 6');
+            // since state is actually changing, render is called again
+            // then i implemented componentDidUpdate and this is called again because of the previous update
+            // componentDidUpdate won't enter to setstate at least because the prev and current props are the same
+            return true;
+        }
+         else {
+            return false;
+        }
+    }
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.animal !== this.props.animal){
-            console.log(this.props.animal, 'actual prop');
-            this.setState((state)=> {
+        console.log('componentAbouttoUpdate -- 4', prevProps.animal !== this.props.animal);
+        if(prevProps.animal !== this.props.animal){ 
+            console.log('is going to -- 5', this.props.animal);
+            this.setState((state) => {
                 return {
                     ...state, src: ANIMAL_IMAGES[this.props.animal]
                 }})
@@ -30,7 +46,7 @@ class AnimalImage extends Component {
     }
     
     render(){
-        console.log('render---');
+        console.log('render -- 1, 3 ');
         let { src } = this.state
         let { animal } = this.props
         return(
