@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import CycleUpdateExample from './sections/CycleUpdateExample';
+import Articles from './sections/ChildrenLayout';
 import { useState } from "react";
 import './App.css';
 
@@ -148,7 +148,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CycleUpdateExample/>
+        <Articles/>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, PureComponent } from 'react';
 import PropTypes from 'prop-types'
 const ANIMAL_IMAGES = {
     cat: 'https://images-na.ssl-images-amazon.com/images/I/61CzZ1b1NhL.jpg',
@@ -21,10 +21,10 @@ class AnimalImage extends Component {
     }
     shouldComponentUpdate(nextProps, nextState){
         if(this.props.animal !== nextProps.animal){
-            console.log(nextProps, 'nextProps -- 2');
+            console.log('nextProps -- 2');
             return true;
         } if(this.state.src !== nextState.src){
-            console.log(nextState, 'nextState -- 2');
+            console.log('nextState -- 2');
             // since state is actually changing, render is called again
             // then i implemented componentDidUpdate and this is called again because of the previous update
             // componentDidUpdate won't enter to setstate at least because the prev and current props are the same
@@ -40,16 +40,21 @@ class AnimalImage extends Component {
         if(prevProps.animal !== this.props.animal){ 
             console.log('is going to -- 5', this.props.animal);
             this.setState((state) => {
+                //some how shouldComponentUpdate is executed here
                 return {
                     ...state, src: ANIMAL_IMAGES[this.props.animal]
                 }})
         }
     }
     
+    componentWillUnmount(){
+        console.log('componentWillUnmount --');
+    }
+    
     render(){
-        console.log('render -- 1, 3 ');
         let { src } = this.state
-        let { animal } = this.props
+        let { animal } = this.props;
+        console.log(src, animal, 'render -- 1, 3 ');
         return(
             <div>
                 <p>Selected: { animal }</p>
@@ -59,27 +64,38 @@ class AnimalImage extends Component {
         );
     }
 }
-AnimalImage.defaultProps = {
-    animal: 'panda'
+const ButtonSetAnimal = ({onClickFn, animalItem, animal}) => {
+    return <button
+        onClick={()=> onClickFn()}
+        disabled={animalItem === animal}
+        > Set animal:  { animalItem } </button>
 }
 class CycleUpdateExample extends Component {
     state = {
-        animal: 'panda'
+        animal: 'panda',
+        showAnimalImage: true
     }
     setAnimal(animal){
         this.setState({ animal });
     }
+    _renderButton(animalItem, animal) {
+        return <ButtonSetAnimal
+            onClickFn = {() => this.setAnimal(animalItem)}
+            animal = {animal}
+            key = { animalItem }
+            animalItem = {animalItem}
+        />
+    }
     render(){
-        let { animal } = this.state;
+        let { animal, showAnimalImage } = this.state;
         return(
             <div> 
-                <h4>Cycle update, ComponentWillReceiveProps, animal in parent: {animal}</h4>
                 {
-                   ANIMAL_LIST.map(animalItem => {
-                       return <button onClick={() => this.setAnimal(animalItem)} key={ animalItem } disabled={animalItem === animal}> Set { animalItem } </button>
-                   })
+                   ANIMAL_LIST.map(animalItem =>  this._renderButton(animalItem, animal))
                 }
-                <AnimalImage animal={ animal }/>
+                { !showAnimalImage && <button onClick={() => this.setState({showAnimalImage: true})}>Render</button> }
+               { showAnimalImage && <button onClick={() => this.setState({showAnimalImage: false})}>Destroy</button> }
+                { showAnimalImage && <AnimalImage animal={ animal }/>}
             </div>
         );
     }

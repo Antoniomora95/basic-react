@@ -8,30 +8,29 @@ function DateBox(props){
         </div>
     );
 }
-class ArticleChildren extends Component {
-    constructor(props){
-        console.log(new Date().getTime());
-        super(props);
-        this.state = {}
-    }
-    static propTypes = {
-        date: PropTypes.string.isRequired
-    }
-
-    render() {
-        console.log(new Date().getTime());
-        const { author, date, title } = this.props
-        return (
+function ArticleChildren(props) {
+    const { author, date, title,children  } = props;
+    return(
             <section className='articleChildren'>
                 <h3>{title}</h3>
                 <p><em>Written by:</em>{author}</p>
                 { date && <DateBox>{date}</DateBox>} 
                 <article>
-                    {this.props.children}
+                    {children}
                 </article>
             </section>
         );
-    }
 }
 
-export default ArticleChildren;
+export default class Articles extends Component {
+    render(){
+        return(
+            <div>
+                <h5>Stateless components</h5>
+                <ArticleChildren author={'Antonio Bautista'} title={'An amazing title'} date={ new Date().toDateString()}><p>
+                    you can send content inside a component call and you can access it in child componet as !!child!! prop
+                    </p></ArticleChildren>
+            </div>
+        )
+    }
+}
