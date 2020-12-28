@@ -21,13 +21,22 @@ function ArticleChildren(props) {
             </section>
         );
 }
-
+ArticleChildren.propTypes = {
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    children: PropTypes.any
+}
 export default class Articles extends Component {
     render(){
         return(
             <div>
                 <h5>Stateless components</h5>
                 <ArticleChildren author={'Antonio Bautista'} title={'An amazing title'} date={ new Date().toDateString()}><p>
+                    you can send content inside a component call and you can access it in child componet as !!child!! prop
+                    </p></ArticleChildren>
+
+                    <ArticleChildren author={'Jose Perez'} title={'another amazing title'}><p>
                     you can send content inside a component call and you can access it in child componet as !!child!! prop
                     </p></ArticleChildren>
             </div>
