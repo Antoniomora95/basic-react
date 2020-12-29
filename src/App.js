@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Articles from './sections/ChildrenLayout';
+import FetchAPIContainer from './sections/container-content';
 import { useState } from "react";
 import './App.css';
 
@@ -147,15 +147,9 @@ class App extends Component {
     });
   }
   render() {
-    const {renderTime} = this.state
     return (
       <div className="App">
-        <button onClick={() => this.setState((state) => ({ ...state, renderTime: true }))}>Render articles</button>
-        <button onClick={() => this.setState((state) => ({ ...state, renderTime: false }))}>Hide articles</button>
-        {
-          renderTime && <Articles />
-        }
-        
+        <FetchAPIContainer/>
       </div>
     );
   }
