@@ -122,33 +122,40 @@ Counter.defaultProps = {
   initialCounter: 25
 }
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       lifeCycles: true,
-      inputVal: ''
+      inputVal: '',
+      renderTime: true
     }
     this.toggleLifleCycles = this.toggleLifleCycles.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  toggleLifleCycles(){
+  toggleLifleCycles() {
     this.setState(state => {
       let { lifeCycles } = state;
       console.log('toggle called');
-      return {...state,lifeCycles: !lifeCycles}
+      return { ...state, lifeCycles: !lifeCycles }
     });
   }
-  handleChange({target}){
+  handleChange({ target }) {
     const { value } = target;
     console.log(value);
     this.setState(state => {
-      return {...state, inputVal: value}
+      return { ...state, inputVal: value }
     });
   }
   render() {
+    const {renderTime} = this.state
     return (
       <div className="App">
-        <Articles/>
+        <button onClick={() => this.setState((state) => ({ ...state, renderTime: true }))}>Render articles</button>
+        <button onClick={() => this.setState((state) => ({ ...state, renderTime: false }))}>Hide articles</button>
+        {
+          renderTime && <Articles />
+        }
+        
       </div>
     );
   }
